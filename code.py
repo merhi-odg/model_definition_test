@@ -32,7 +32,7 @@ def begin(model_def):
     elif 'deployableModel' in raw_json.keys():
         model_reference_key = 'deployableModel'
     
-    prin("\nModel Reference Key: ", model_reference_key, flush=True)
+    print("\nModel Reference Key: ", model_reference_key, flush=True)
     
     try:
         # Extract input schema from rawJson
