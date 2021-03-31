@@ -26,9 +26,13 @@ def begin(model_def):
     # Extract rawJson from model_def
     raw_json = json.loads(model_def['rawJson'])
     
+    # The JSON tree is different for models running as batch models and models deployed at REST:
+    
+    # Models running as batch models have a 'model' key, whereas ...
     if 'model' in raw_json.keys():
         model_reference_key = 'model'
         
+    # ... models running as REST have a 'deployableModel' key
     elif 'deployableModel' in raw_json.keys():
         model_reference_key = 'deployableModel'
     
@@ -72,8 +76,8 @@ def begin(model_def):
         
         print("\nSchema extraction failed!\n", flush=True)
         
-        input_schema_definition=None
-        output_schema_definition=None
+        input_schema_definition = None
+        output_schema_definition = None
     
     pass
       
