@@ -23,11 +23,20 @@ def begin(model_def):
     
     model_definition = model_def
     
+    # Extract rawJson from model_def
+    raw_json = json.loads(model_def['rawJson'])
+    
+    if 'model' in raw_json.keys():
+        model_reference_key = 'model'
+        
+    elif 'deployableModel' in raw_json.keys():
+        model_reference_key = 'deployableModel'
+    
+    prin("\nModel Reference Key: ", model_reference_key, flush=True)
+    
     try:
         # Extract input schema from rawJson
-        input_schemas = json.loads(
-            model_def['rawJson']
-        )['model']['storedModel']['modelMetaData']['inputSchema']
+        input_schemas = raw_json[model_reference_key]['storedModel']['modelMetaData']['inputSchema']
 
         # Checking to see if any input schemas exist
         if len(input_schemas) > 0:
@@ -44,9 +53,7 @@ def begin(model_def):
         
         
         # Extract output schema from rawJson
-        output_schemas = json.loads(
-            model_def['rawJson']
-        )['model']['storedModel']['modelMetaData']['outputSchema']
+        output_schemas = raw_json[model_reference_key]['storedModel']['modelMetaData']['outputSchema']
 
         # Checking to see if any output schemas exist
         if len(output_schemas) > 0:
@@ -62,6 +69,9 @@ def begin(model_def):
             output_schema_definition = None
     
     except:
+        
+        print("\nSchema extraction failed!\n", flush=True)
+        
         input_schema_definition=None
         output_schema_definition=None
     
