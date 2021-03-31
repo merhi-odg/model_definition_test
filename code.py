@@ -99,4 +99,4 @@ def action(data):
     
     print("output: ", out, flush=True)
         
-    yield model_definition
+    yield out
