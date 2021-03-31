@@ -6,12 +6,12 @@ To test, create a scoring batchjob with data `{"input":1}` as embedded input. Th
 The job log should display, among the standard logs, the following:
 
 ```
-2021/3/31 21:57:57 [info] state changes to RUNNING
-2021/3/31 21:57:57 [info] MODEL-CONSOLE: 
+2021/3/31 22:23:19 [info] state changes to RUNNING
+2021/3/31 22:23:19 [info] MODEL-CONSOLE: 
 Model Definition keys: 
 
 dict_keys(['rawJson', 'job'])
-2021/3/31 21:57:57 [info] MODEL-CONSOLE: 
+
 Model Reference Key:  model
 
 Input Schema(s) found!
@@ -21,14 +21,18 @@ Input Schema Definition:
 
 {'type': 'record', 'name': 'input_schema.avsc', 'fields': [{'type': 'double', 'name': 'input'}]}
 
-Output Schema(s) NOT found!
-2021/3/31 21:57:58 [info] init succeeded
-2021/3/31 21:57:58 [info] MODEL-CONSOLE: action input:  {'input': 1}
-num:  1
-output:  {'reciprocal': 1.0}
-2021/3/31 21:57:58 [info] state changes to FINISHING
-2021/3/31 21:57:58 [info] MODEL-CONSOLE: Model runner exits
-2021/3/31 21:57:58 [info] state changes to FINISHED
+Output Schema(s) found!
+
+
+Output Schema Definition:
+2021/3/31 22:23:19 [info] MODEL-CONSOLE: {'type': 'record', 'name': 'output_schema.avsc', 'fields': [{'type': 'double', 'name': 'reciprocal'}]}
+2021/3/31 22:23:19 [info] init succeeded
+2021/3/31 22:23:19 [info] MODEL-CONSOLE: action input:  {'input': 1}
+2021/3/31 22:23:20 [info] MODEL-CONSOLE: num:  1
+2021/3/31 22:23:20 [info] MODEL-CONSOLE: output:  {'reciprocal': 1.0}
+2021/3/31 22:23:20 [info] state changes to FINISHING
+2021/3/31 22:23:20 [info] MODEL-CONSOLE: Model runner exits
+2021/3/31 22:23:20 [info] state changes to FINISHED
 ```
 
 This indicates that the input schema definition was successfull extrated from `rawJson`, whereas no output schemas were found.
