@@ -35,7 +35,7 @@ def begin(model_def):
         input_schema_definition = input_schemas[0]['schemaDefinition']
     
         print("\nInput Schema Definition: \n", flush=True)
-        print(input_schema_defintion, flush=True)
+        print(input_schema_definition, flush=True)
     
     else:
         print("\nInput Schema(s) NOT found!\n", flush=True)
@@ -54,7 +54,7 @@ def begin(model_def):
         output_schema_definition = output_schemas[0]['schemaDefinition']
     
         print("\nOutput Schema Definition: \n", flush=True)
-        print(output_schema_defintion, flush=True)
+        print(output_schema_definition, flush=True)
     
     else:
         print("\nOutput Schema(s) NOT found!\n", flush=True)
