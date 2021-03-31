@@ -23,44 +23,50 @@ def begin(model_def):
     
     model_definition = model_def
     
-    # Extract input schema from rawJson
-    input_schemas = json.loads(
-        model_def['rawJson']
-    )['model']['storedModel']['modelMetaData']['inputSchema']
-    
-    # Checking to see if any input schemas exist
-    if len(input_schemas) > 0:
-        print("\nInput Schema(s) found!\n", flush=True)
-      
-        input_schema_definition = input_schemas[0]['schemaDefinition']
-    
-        print("\nInput Schema Definition: \n", flush=True)
-        print(input_schema_definition, flush=True)
-    
-    else:
-        print("\nInput Schema(s) NOT found!\n", flush=True)
-        input_schema_definition = None
+    try:
+        # Extract input schema from rawJson
+        input_schemas = json.loads(
+            model_def['rawJson']
+        )['model']['storedModel']['modelMetaData']['inputSchema']
+
+        # Checking to see if any input schemas exist
+        if len(input_schemas) > 0:
+            print("\nInput Schema(s) found!\n", flush=True)
+
+            input_schema_definition = input_schemas[0]['schemaDefinition']
+
+            print("\nInput Schema Definition: \n", flush=True)
+            print(input_schema_definition, flush=True)
+
+        else:
+            print("\nInput Schema(s) NOT found!\n", flush=True)
+            input_schema_definition = None
         
         
-    # Extract output schema from rawJson
-    output_schemas = json.loads(
-        model_def['rawJson']
-    )['model']['storedModel']['modelMetaData']['outputSchema']
+        # Extract output schema from rawJson
+        output_schemas = json.loads(
+            model_def['rawJson']
+        )['model']['storedModel']['modelMetaData']['outputSchema']
+
+        # Checking to see if any output schemas exist
+        if len(output_schemas) > 0:
+            print("\nOutput Schema(s) found!\n", flush=True)
+
+            output_schema_definition = output_schemas[0]['schemaDefinition']
+
+            print("\nOutput Schema Definition: \n", flush=True)
+            print(output_schema_definition, flush=True)
+
+        else:
+            print("\nOutput Schema(s) NOT found!\n", flush=True)
+            output_schema_definition = None
     
-    # Checking to see if any output schemas exist
-    if len(output_schemas) > 0:
-        print("\nOutput Schema(s) found!\n", flush=True)
-      
-        output_schema_definition = output_schemas[0]['schemaDefinition']
+    except:
+        input_schema_definition=None
+        output_schema_definition=None
     
-        print("\nOutput Schema Definition: \n", flush=True)
-        print(output_schema_definition, flush=True)
-    
-    else:
-        print("\nOutput Schema(s) NOT found!\n", flush=True)
-        output_schema_definition = None
-      
     pass
+      
 
 
 # modelop.score
@@ -79,4 +85,4 @@ def action(data):
     
     print("output: ", out, flush=True)
         
-    yield out
+    yield model_definition
