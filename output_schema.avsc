@@ -1,0 +1,10 @@
+{
+  "type": "record",
+  "name": "output_schema.avsc",
+  "fields": [
+    {
+      "name": "reciprocal",
+      "type": "double"
+    }
+  ]
+}
